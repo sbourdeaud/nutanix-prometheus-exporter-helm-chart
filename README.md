@@ -24,7 +24,7 @@ To install this chart (which deploys the nutanix-prometheus-exporter available [
 5. Create the necessary secrets (the ones you referenced in your values.yaml for each instance) on your k8s cluster in the namespace you want:
     ```sh
     #adding secret for redfish operations mode
-    export IPMI_CONFIG='[\n  {"ip":"<your_ipmi_ip>","name":"nvd-az02mgt01-1","username":"ADMIN","password":"<your_ipmi_password>"},\n  {"ip":"<your_ipmi_ip>","name":"nvd-az02mgt02-1","username":"ADMIN","password":"<your_ipmi_password>"},\n  {"ip":"<your_ipmi_ip>","name":"nvd-az02mgt03-1","username":"ADMIN","password":"<your_ipmi_password>"},\n  {"ip":"<your_ipmi_ip>","name":"nvd-az02mgt04-1","username":"ADMIN","password":"<your_ipmi_password>"}\n]'
+    export IPMI_CONFIG='[\n  {"ip":"<your_ipmi_ip>","name":"your_node1_name","username":"ADMIN","password":"<your_ipmi_password>"},\n  {"ip":"<your_ipmi_ip>","name":"your_node2_name","username":"ADMIN","password":"<your_ipmi_password>"},\n  {"ip":"<your_ipmi_ip>","name":"your_node3_name","username":"ADMIN","password":"<your_ipmi_password>"},\n  {"ip":"<your_ipmi_ip>","name":"your_node4_name","username":"ADMIN","password":"<your_ipmi_password>"}\n]'
     kubectl create secret generic clustername-ipmi --from-literal=IPMI_CONFIG="$IPMI_CONFIG" -n your_namespace
     #adding secret for v4 or legacy operations mode
     kubectl create secret generic prism --from-literal=secret=<your_password> --from-literal=username=admin
