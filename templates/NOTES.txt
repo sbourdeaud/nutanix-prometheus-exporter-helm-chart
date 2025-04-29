@@ -1,0 +1,2 @@
+nutanix-prometheus-exporter instances deployed and service monitors configured.
+Wait for a few minutes, then checks that metrics are being scraped by prometheus.

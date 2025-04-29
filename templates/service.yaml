@@ -1,0 +1,20 @@
+{{- range $instanceName, $instanceValues := .Values.instances }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "chart.fullname" $ }}-{{ $instanceName }}
+  labels:
+    app.kubernetes.io/instance: {{ include "chart.name" $ }}-{{ $instanceName }}
+    app.kubernetes.io/name: {{ include "chart.name" $ }}
+spec:
+  type: {{ $instanceValues.service.type }}
+  ports:
+    - port: {{ $instanceValues.service.port }}
+      targetPort: http-metrics
+      protocol: TCP
+      name: http-metrics
+  selector:
+    app.kubernetes.io/instance: {{ include "chart.name" $ }}-{{ $instanceName }}
+    app.kubernetes.io/name: {{ include "chart.name" $ }}
+{{- end }}
